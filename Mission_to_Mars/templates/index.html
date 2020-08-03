@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>All About Mars</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+
+    </div>
+    <h3>Latest Mars News</h3>
+    <hr>
+    <h4>{{marscollection.mars_news}}</h4>
+    {{marscollection.news_summary}}
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class = "col-md-8">
+        <h3>Featured Mars Image</h3>
+        <img src= "{{marscollection.featured_mars_image}}" width="700px">
+      </div>
+      <div class = "col-md-4">
+        <div class="card border-dark mb-3" style="width: 22rem;">
+          <div class="card-body">
+            <h4 class="card-title">Current Weather on Mars</h4>
+            <p class="card-text">{{marscollection.mars_weather}}</p>
+          </div>
+        </div>
+        <h4>Mars Facts</h4>
+        {{marscollection.mars_facts | safe}}
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col-md-12">
+        <br>
+        <h3 style="text-align:center;">Mars Hemispheres</h3>
+      </div>
+    </div>
+    <div class ="row">
+      {% for hemisphere in marscollection.mars_hemispheres %}
+      <div class="col-md-6">
+        <div class="card" style="width: 35rem;">
+          <img class="card-img-top" src={{hemisphere.img_url}} alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text"><h4 style="text-align:center;">{{hemisphere.title}}</h4></p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+
+</html>
+
